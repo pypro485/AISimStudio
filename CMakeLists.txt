@@ -29,7 +29,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(AISimStudio src/main.cpp
         include/AISimStudio/logger.h
-        src/logger.cpp)
+        src/logger.cpp
+        src/shader.cpp
+        include/AISimStudio/shader.h
+)
 target_compile_options(AISimStudio PRIVATE
             $<$<CXX_COMPILER_ID:MSVC>:/W4>
 )

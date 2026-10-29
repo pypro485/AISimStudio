@@ -2,8 +2,8 @@
 #include <spdlog/spdlog.h>
 #include <memory>
 
-namespace Engine {
-    namespace Log {
+
+    namespace Engine::Log {
 
         class Logger {
         public:
@@ -16,8 +16,8 @@ namespace Engine {
 
 
         void glfw_error_callback(int error_code, const char* description);
-    } // namespace Log
-} // namespace Engine
+    } // namespace Engine::Log
+
 
 // Short Core Engine Macros remain here
 #define CORE_TRACE(...)    ::Engine::Log::Logger::getCoreLogger()->trace(__VA_ARGS__)

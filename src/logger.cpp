@@ -3,8 +3,8 @@
 
 #include "GLFW/glfw3.h"
 
-namespace Engine {
-    namespace Log {
+
+    namespace Engine::Log {
         std::shared_ptr<spdlog::logger> Logger::s_CoreLogger;
 
         void Logger::init() {
@@ -13,7 +13,7 @@ namespace Engine {
 #ifndef NDEBUG
             s_CoreLogger->set_level(spdlog::level::debug);
 #else
-            s_CoreLogger->set_level(spdlog::level::warn);
+            s_CoreLogger->set_level(spdlog::level::info);
 #endif
         }
 
@@ -44,4 +44,4 @@ namespace Engine {
             }
         }
     }
-}
+
