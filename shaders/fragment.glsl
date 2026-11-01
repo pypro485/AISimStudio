@@ -1,7 +1,10 @@
 #version 330 core
-out vec4 FragColor;
+
+in vec3 fragColor; // REMOVED layout(location = 0) - Must exactly match the vertex out name
+
+out vec4 FinalColor; // Fragment outputs don't need locations in 3.30 either
 
 void main()
 {
-    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+    FinalColor = vec4(fragColor, 1.0);
 }

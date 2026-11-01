@@ -36,6 +36,7 @@ add_executable(AISimStudio src/main.cpp
 target_compile_options(AISimStudio PRIVATE
             $<$<CXX_COMPILER_ID:MSVC>:/W4>
 )
+add_compile_definitions(SHADER_DIR="${CMAKE_SOURCE_DIR}/shaders/")
 target_include_directories(AISimStudio PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_sources(AISimStudio PRIVATE "${LIBS_ROOT}/glad/src/glad.c")
 target_include_directories(AISimStudio PRIVATE "${LIBS_ROOT}/glad/include")

@@ -4,13 +4,15 @@
 #include <format>
 #include "AISimStudio/logger.h"
 #include "AISimStudio/shader.h"
+#include <memory>
+
 
 constexpr int WIDTH = 800;
 constexpr int HEIGHT = 600;
 float vertices[] = {
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f,  0.5f, 0.0f
+    -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+     0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
 };
 
 class App {
@@ -54,6 +56,7 @@ private:
         glfwMakeContextCurrent(window);
         glfwSwapInterval(1);
         glfwSetWindowUserPointer(window, this);
+
     }
 
     static void framebuffer_size_callback([[maybe_unused]] GLFWwindow *window, int width, int height) {
@@ -80,12 +83,16 @@ private:
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
         CORE_INFO("Sent vertex data to VBO");
-        shader = std::make_unique<Engine::Render::Shader>(R"(C:\dev\AISimStudio\shaders\vertex.glsl)",R"(C:\dev\AISimStudio\shaders\fragment.glsl)");
+        shader = std::make_unique<Engine::Render::Shader>(
+            std::string(SHADER_DIR) + "vertex.glsl",
+            std::string(SHADER_DIR) + "fragment.glsl"
+        );
 
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
         glEnableVertexAttribArray(0);
-
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void*>(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
 
 
     }
