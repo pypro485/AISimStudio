@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.21)
 project(AISimStudio LANGUAGES C CXX)
 
 include(FetchContent)
-set(LIBS_ROOT "$ENV{CPP_LIBS_DIR}")
-if (NOT LIBS_ROOT)
-    message(FATAL_ERROR "Environment variable 'CPP_LIBS_DIR' is not set!")
-endif ()
+set(LIBS_ROOT "external")
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "Build the GLFW test programs" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Build the GLFW example programs" FORCE)
